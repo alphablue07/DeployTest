@@ -28,7 +28,7 @@ class Register extends Component {
     const { email, password } = this.state;
     createUserWithEmailAndPassword(auth, email, password)
       .then((res) => {
-        registerUser(
+        registerUser2(
           res.user.uid,
           this.state.name,
           this.state.username,
