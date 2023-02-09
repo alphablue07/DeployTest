@@ -10,7 +10,10 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
 
+
 import logo from '../../assets/images/echamp.png';
+import { connect } from 'react-redux'
+
 
 
 import '../login/login.css'
@@ -93,6 +96,7 @@ class Login extends Component {
                 </div>
                 <div >
                   <span>Belum punya akun?&nbsp;<a href="/register">Buat akun</a>&nbsp;baru</span>
+                  <p>Login Name {this.props.userName}</p>
                 </div>
               </Col>
             </Row>
@@ -103,4 +107,8 @@ class Login extends Component {
   }
 }
 
-export default Login
+const reduxState = (state) => ({
+  userName: state.user
+})
+
+export default connect(reduxState, null)(Login)

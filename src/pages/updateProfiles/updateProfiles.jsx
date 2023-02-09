@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import React, { Component, useState, useEffect} from "react";
 import Navbar from "../../components/layout/nav/Navbar";
 import Footer from "../../components/layout/footer/Footer";
@@ -11,28 +12,40 @@ import {
   Button,
 } from "react-bootstrap";
 import { checkDataLogin } from "../../action/autentication";
-import { getUserById, updateProfile2 } from "../../action/fb_database";
+import { halamanGameVerifikasi } from "../../action/games";
+import { useAuth,upload,deletePhoto } from "../../action/fb_storage.js"
+import  Link  from "next/link";
+import { updateProfile2 } from "../../action/fb_database";
 
-const ProfileUpdate = (props) => {
+export default function Profile(){
 
+      halamanGameVerifikasi();
+      const currentUser = useAuth();
 
-
-  const [isLogin, setIsLogin] = useState(false);
-
+      const [updateProfile, setUpdateProfile] = useState("");
+      const [isLogin, setIsLogin] = useState(false);
       const [profile, setProfile] = useState();
+
+      function handleChange(e){
+        setUpdateProfile({[e.target.name] : e.target.value})
+        // console.log({[e.target.name] : e.target.value})
+      }
+
+      function handleClick(){
+        updateProfile2()
+      }
+
       const setDataUser = (dataUser)=>{
-          console.log("Data User", dataUser)
-        }       
-        const setDataUserDetail = (dataUser) =>{
-          console.log("Data User Detail", dataUser)
-          setProfile(dataUser)
+        // console.log("Data User", dataUser)
+        setProfile(dataUser)
+      } 
+      
+      const setDataUserDetail = (dataUser) =>{
+          // console.log("data user detail:", dataUser)
       }
       useEffect(() => {
-          checkDataLogin(setIsLogin,setDataUser, setDataUserDetail, setProfile)
+          checkDataLogin(setIsLogin, setDataUserDetail, setDataUser, setProfile)
       }, []);      
-
-  
-  
     return (
       <div style={{ backgroundColor: "#2B2D33", color: "#fff" }}>
         <Navbar bgColor="#4A4A5C" />
@@ -41,57 +54,35 @@ const ProfileUpdate = (props) => {
           className="mt-5 vw-100 vh-120"
           style={{ padding: "10vh 10vh", backgroundColor: "#3E4552" }}
         >
-          <div className="row">
-            <div className="col-3">
-              <p className="lead fs-2">username</p>
-              <div
-                id="pp"
-                className="border mb-4 d-flex justify-content-center align-items-center"
-                style={{ width: "25vh", height: "25vh", borderRadius: "50%" }}
-              >
-                profile picture
-              </div>
-            </div>
-            
-          </div>
-          <div className="row">
-            <div className="col-5">
-              <Form>
+        <div className="row">
+          <div className="col-5">
+              <Form onSubmit={handleClick}>
                 <Form.Group className="mb-3" controlId="full-name">
                   <Form.Label>Full Name</Form.Label>
-                  <Form.Control type="plaintext" placeholder={profile?.name}></Form.Control>
+                  <Form.Control id="fullname" type="plaintext" onChange={handleChange} placeholder={profile?.name} name="name"></Form.Control>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="email">
-                  <Form.Label>Email address</Form.Label>
-                  <Form.Control type="email" placeholder={profile?.email} />
+                  <Form.Label>username</Form.Label>
+                  <Form.Control  type="plaintext" onChange={handleChange} placeholder={profile?.username}  name="username"/>
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="City">
                   <Form.Label>City</Form.Label>
-                  <Form.Control type="plaintext" placeholder={profile?.city}></Form.Control>
+                  <Form.Control type="plaintext"  onChange={handleChange} placeholder={profile?.city} name="city"></Form.Control>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="Social-Media">
                   <Form.Label>Social Media</Form.Label>
-                  <Form.Control type="plaintext"placeholder={profile?.social_media}></Form.Control>
+                  <Form.Control type="plaintext" onChange={handleChange} placeholder={profile?.social_media} name="social_media"></Form.Control>
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="profile-picture">
-                  <Form.Label>Profile picture</Form.Label>
-                  <Form.Control type="file"></Form.Control>
-                </Form.Group>
-                <Button type="submit" className="btn btn-primary me-3">
+                <Button type="submit" className="btn btn-primary me-3" >
                   Update
-                </Button>
-                <Button type="submit" className="btn btn-danger">
-                  Delete
                 </Button>
               </Form>
             </div>
-          </div>
+        </div>
         </Container>
         <Footer />
       </div>
     );
   }
 
-
-export default ProfileUpdate;
