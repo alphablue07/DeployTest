@@ -133,23 +133,21 @@ export const updateProfile = (
 
 //updateProfiles
 export const updateProfile2 = (
-  id,
+  id_player,
   name,
   username,
   city,
-  social_media,
-  profile_picture
+  social_media
 ) => {
-  const dbRef = ref(db, `game_user/${id}`);
+  const dbRef = ref(db, `game_user/${id_player}`);
   const data = {
     name,
     username,
     city,
-    social_media,
-    profile_picture,
+    social_media
   };
   update(dbRef, data);
-  console.log("update done");
+  alert("update done");
 };
 
 

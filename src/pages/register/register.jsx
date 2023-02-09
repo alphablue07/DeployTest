@@ -1,7 +1,16 @@
 import React, { Component } from "react";
-import { Button, Container, Grid, TextField } from "@mui/material";
+// import { Button, Container, Grid, TextField } from "@mui/material";
 import { Link } from "react-router-dom";
 import { authFirebase } from "../../config/firebase";
+import Navbar from "../../components/layout/nav/Navbar";
+
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+import Container from 'react-bootstrap/Container'
+import Card from 'react-bootstrap/Card';
+
 import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
@@ -47,103 +56,46 @@ class Register extends Component {
       })
       .catch((err) => {
         alert(err.message);
-      });
+      })
+    
   };
   render() {
     const { name, username, email, password, city, social_media } = this.state;
     return (
-      <Container>
-        <Grid container justify="center">
-          <Grid xs="12" md="8" lg="4">
-            <h2>Halaman Registrasi / Daftar / Sign Up</h2>
-            <form onSubmit={this.handleSubmit}>
-              <TextField
-                type="text"
-                fullWidth
-                margin="dense"
-                variant="outlined"
-                size="small"
-                value={name}
-                onChange={this.handleChangeField}
-                name="name"
-                label="Name"
-                required
-              />
-              <TextField
-                type="text"
-                fullWidth
-                margin="dense"
-                variant="outlined"
-                size="small"
-                value={username}
-                onChange={this.handleChangeField}
-                name="username"
-                label="Username"
-                required
-              />
-              <TextField
-                type="email"
-                fullWidth
-                margin="dense"
-                variant="outlined"
-                size="small"
-                value={email}
-                onChange={this.handleChangeField}
-                name="email"
-                label="Email"
-                required
-              />
-              <TextField
-                type="text"
-                fullWidth
-                margin="dense"
-                variant="outlined"
-                size="small"
-                value={city}
-                onChange={this.handleChangeField}
-                name="city"
-                label="city"
-                required
-              />
-              <TextField
-                type="text"
-                fullWidth
-                margin="dense"
-                variant="outlined"
-                size="small"
-                value={social_media}
-                onChange={this.handleChangeField}
-                name="social_media"
-                label="Social Media"
-                required
-              />
-              <TextField
-                type="password"
-                fullWidth
-                margin="dense"
-                variant="outlined"
-                size="small"
-                value={password}
-                onChange={this.handleChangeField}
-                name="password"
-                label="Password"
-                required
-              />
-              <Button
-                type="submit"
-                fullWidth
-                variant="contained"
-                color="primary"
-              >
-                Registrasi
-              </Button>
-            </form>
-            <p>
-              Sudah punya akun? <Link to="/">Login</Link>
-            </p>
-          </Grid>
-        </Grid>
-      </Container>
+      <div>
+      <Navbar bgColor="#4A4A5C" />
+      <Container className="vw-100 vh-100">
+      <div className="row">
+        <div className="col-lg-5 mt-5">
+        <h1 className="mt-5">Sign Up</h1>  
+        <Form className="mt-3"  onSubmit={this.handleSubmit}>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Control type="email" placeholder="Enter email" onChange={this.handleChangeField} name="email"  />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Control type="password" placeholder="Password" onChange={this.handleChangeField} name="password"  />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="name">
+            <Form.Control placeholder="name" onChange={this.handleChangeField} name="name"  />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="username">
+            <Form.Control placeholder="username" onChange={this.handleChangeField} name="username" />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="city">
+            <Form.Control placeholder="city" onChange={this.handleChangeField} name="city"  />
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="social_media">
+            <Form.Control placeholder="social media" onChange={this.handleChangeField} name="social_media"  />
+          </Form.Group>
+
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+        </Form> 
+        </div>
+      </div>
+    </Container>
+      </div>
     );
   }
 }
