@@ -1,9 +1,11 @@
 import { set, ref, push, onValue, query } from "firebase/database";
 import { database } from "../config/firebase";
 import { checkDataLogin } from "./autentication";
+import { useAuth } from "./fb_storage";
 
 
 const db = database;
+
 // WRITE
 export const seederGame = () => {
     insertGame(
@@ -239,6 +241,18 @@ export const getLeaderBoard = async (limit = 0) => {
         return playersDescending.slice(0, limit);
     }
     return playersDescending;
+};
+
+export const getScore = async () => {
+    const players = []
+    const data_score = await retrieveAllGamesScore()
+    data_score.forEach(async element => {
+        const found = players.some(el => el.id_player === element.data.id_player)
+            var commentIndex = players.findIndex(function (c) {
+                return c.id_player == element.data.id_player;
+            });
+            players[commentIndex]['score'] += element.data.score;
+    });
 };
 
 export const halamanGameVerifikasi = async () => {

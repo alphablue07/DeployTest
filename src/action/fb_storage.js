@@ -1,10 +1,49 @@
-import { storage } from "../config/firebase";
-import { getDownloadURL, ref as storageRef, uploadBytes } from "firebase/storage"
+import { useEffect, useState } from "react"
+import { getAuth,createUserWithEmailAndPassword, signInWithEmailAndPasswor, onAuthStateChanged, signOut, updateProfile } from "firebase/auth";
+import { getDownloadURL, ref , uploadBytes, deleteObject,getMetadata,updateMetadata } from "firebase/storage"
+import { initializeApp } from "firebase/app";
+import { authFirebase,storage } from "../config/firebase";
 
-export const uploadProfileImg = async (fileObject) => {
-    const imgRef = storageRef(storage, `profile_img/${fileObject.name}`)
-    const snapshot = await uploadBytes(imgRef, fileObject)
-    const url = await getDownloadURL(imgRef)
-    console.log(url)
-    return url
-  }
+// const auth = getAuth();
+
+// initialize
+
+// export const uploadProfileImg = async (fileObject) => {
+//     const imgRef = storageRef(storage, `profile_img/${fileObject.name}`)
+//     const snapshot = await uploadBytes(imgRef, fileObject)
+//     const url = await getDownloadURL(imgRef)
+//     console.log(url)
+//     return url
+//   }
+
+export function useAuth(){
+  const [currentUser, setCurrentUser] = useState();
+
+  useEffect(() => {
+    const unsub = onAuthStateChanged(authFirebase, user => setCurrentUser(user));
+    return unsub;
+  }, [])
+  return currentUser
+}
+
+export async function deletePhoto(currentUser){
+  const fileRef = ref(storage, currentUser.uid + '.jpg');
+  deleteObject(fileRef)
+}
+
+
+export async function upload(file,currentUser){
+      const fileRef = ref(storage, currentUser.uid + '.jpg');
+      const snapshot = await uploadBytes(fileRef,file)
+      const photoURL = await getDownloadURL(fileRef);
+      updateProfile(currentUser, {photoURL});
+    
+    
+    // if(file.name == '.png'){
+    //   const newMetadata = {
+    //     contentType: 'png'
+    //   };
+    //  updateMetadata(fileRef,newMetadata)
+    // }
+    
+}
