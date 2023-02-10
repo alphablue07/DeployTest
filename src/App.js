@@ -7,7 +7,6 @@ import "./App.css";
 
 import GameSpaceWar from "./pages/games/space_war";
 import GameRPS from "./pages/games/rock_paper_scissors";
-
 import Home from "./pages/home";
 import Profiles from "./pages/profiles/profiles";
 import Register from "./pages/register/register";
