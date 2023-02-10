@@ -17,22 +17,27 @@ import { useAuth,upload,deletePhoto } from "../../action/fb_storage.js"
 import  Link  from "next/link";
 import { updateProfile2 } from "../../action/fb_database";
 
-export default function Profile(){
-
+export default function UpdateProfile(){
       halamanGameVerifikasi();
       const currentUser = useAuth();
 
-      const [updateProfile, setUpdateProfile] = useState("");
+      const [updateProfile, setUpdateProfile] = useState('');
       const [isLogin, setIsLogin] = useState(false);
       const [profile, setProfile] = useState();
+      const [name, setName] = useState('')
+      const [username, setUsername] = useState('')
+      const [city, setCity] = useState('')
+      const [social_media, setSocialmedia] = useState('')
 
-      function handleChange(e){
-        setUpdateProfile({[e.target.name] : e.target.value})
-        // console.log({[e.target.name] : e.target.value})
-      }
+      // function handleChange(e){
+      //   setName({[e.target.name] : e.target.value})
+      //   setUsername({[e.target.name] : e.target.value})
+      //   setCity({[e.target.name] : e.target.value})
+      //   setSocialmedia({[e.target.name] : e.target.value})
+      // }
 
       function handleClick(){
-        updateProfile2()
+        updateProfile2(currentUser.uid,name,username,city,social_media)
       }
 
       const setDataUser = (dataUser)=>{
@@ -59,20 +64,20 @@ export default function Profile(){
               <Form onSubmit={handleClick}>
                 <Form.Group className="mb-3" controlId="full-name">
                   <Form.Label>Full Name</Form.Label>
-                  <Form.Control id="fullname" type="plaintext" onChange={handleChange} placeholder={profile?.name} name="name"></Form.Control>
+                  <Form.Control id="fullname" type="plaintext" onChange={(e) => setName(e.target.value)} placeholder={profile?.name} name="name"></Form.Control>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="email">
                   <Form.Label>username</Form.Label>
-                  <Form.Control  type="plaintext" onChange={handleChange} placeholder={profile?.username}  name="username"/>
+                  <Form.Control  type="plaintext" onChange={(e) => setUsername(e.target.value)} placeholder={profile?.username}  name="username"/>
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="City">
                   <Form.Label>City</Form.Label>
-                  <Form.Control type="plaintext"  onChange={handleChange} placeholder={profile?.city} name="city"></Form.Control>
+                  <Form.Control type="plaintext"  onChange={(e) => setCity(e.target.value)} placeholder={profile?.city} name="city"></Form.Control>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="Social-Media">
                   <Form.Label>Social Media</Form.Label>
-                  <Form.Control type="plaintext" onChange={handleChange} placeholder={profile?.social_media} name="social_media"></Form.Control>
+                  <Form.Control type="plaintext" onChange={(e) => setSocialmedia(e.target.value)} placeholder={profile?.social_media} name="social_media"></Form.Control>
                 </Form.Group>
                 <Button type="submit" className="btn btn-primary me-3" >
                   Update

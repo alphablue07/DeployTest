@@ -11,55 +11,65 @@ import {
   Col,
   Button
 } from "react-bootstrap";
-import { getUserById } from "../../action/fb_database";
 
 import "./styles.css";
 import { checkDataLogin } from "../../action/autentication";
-import { render } from "@testing-library/react";
 import { halamanGameVerifikasi } from "../../action/games";
-import { useAuth } from "../../action/fb_storage";
 import { getLeaderBoard } from "../../action/games";
-import { upload } from "../../action/fb_storage";
+// import { useAuth,upload } from "../../config/firebase";
+import { useAuth,upload } from "../../action/fb_storage";
+import Link from "next/link";
 
 const Profiles = (props) => {
       halamanGameVerifikasi();
-
       const dataUser = [];
       const currentUser = useAuth();
-      const [dataList, setDataList] = useState([]);
-      const [isLogin, setIsLogin] = useState(false);
-      const [photoURL, setphotoURL] = useState('https://images.unsplash.com/photo-1628563694622-5a76957fd09c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE2fHx8ZW58MHx8fHw%3D&w=1000&q=80');
-      const [profile, setProfile] = useState();
       const [photo, setPhoto] = useState(null);
-      const setDataUser = (dataUser)=>{
-          console.log("Data User", dataUser)
-        }       
-        const setDataUserDetail = (dataUser) =>{
-          console.log("Data User Detail", dataUser)
-          setProfile(dataUser)
-      }
+      const [photoURL, setphotoURL] = useState("https://spesialis1.orthopaedi.fk.unair.ac.id/wp-content/uploads/2021/02/depositphotos_39258143-stock-illustration-businessman-avatar-profile-picture.jpg");
 
-      const files = document.getElementById('profileSubmit');
-
-      function handleChange(e){
-        files.className = 'mt-1 disabled btn btn-primary me-3';
-        files.textContent = 'Waiting for input...'
-        if(e.target.files[0]){
+      function handleChange(e) {
+        if (e.target.files[0]) {
           setPhoto(e.target.files[0])
-          files.textContent = 'Save Changes'
-          files.className = 'mt-1 btn btn-primary me-3'
         }
       }
 
       function handleClick(){
         if(photo == null){
-          alert('Photo data is empty')
+          alert(`can't upload empty data`)
         }else{
           upload(photo,currentUser)
-          alert('uploaded file')
         }
       }
 
+      useEffect(() => {
+        if(currentUser?.photoURL){
+          setphotoURL(currentUser.photoURL)
+        }
+      }, [currentUser])
+
+
+      const [dataList, setDataList] = useState([]);
+      const [isLogin, setIsLogin] = useState(false);
+      const [profile, setProfile] = useState();
+      
+      const setDataUser = (dataUser)=>{
+        }       
+        const setDataUserDetail = (dataUser) =>{
+          setProfile(dataUser)
+      }
+      const files = document.getElementById('profileSubmit');
+
+      // function handleChange(e){
+      //   files.className = 'mt-1 disabled btn btn-primary me-3';
+      //   files.textContent = 'Waiting for input...'
+      //   if(e.target.files[0]){
+      //     setPhoto(e.target.files[0])
+      //     files.textContent = 'Save Changes'
+      //     files.className = 'mt-1 btn btn-primary me-3'
+      //   }
+      // }
+
+      
       const getData = async () => {
         const data_new = await getLeaderBoard(10)
         setDataList(data_new)
@@ -76,11 +86,7 @@ const Profiles = (props) => {
           checkDataLogin(setIsLogin,setDataUser, setDataUserDetail, setProfile)
       }, []);
       
-      useEffect(() => {
-        if(currentUser?.photoURL){
-          setphotoURL(currentUser.photoURL)
-        }
-      }, [currentUser])
+      
 
       useEffect(() => {
         getData()
@@ -97,7 +103,6 @@ const Profiles = (props) => {
           >
             <div className="row">
               <div className="col-3">
-              <Form>  
               <Card className="bg-dark" style={{ width: '100%' }}>
                 <Card.Img variant="top" src={photoURL}/> 
                 <Card.Body style={{position: "relative"}}>
@@ -106,11 +111,9 @@ const Profiles = (props) => {
                 </div>
                 </Card.Body>
               </Card>
-              <Button id="profileSubmit" className="mt-1 disabled" type="submit" onClick={handleClick}>Save Changes</Button>
-              </Form>
+              <Button className="mt-1" type="submit" onClick={handleClick}>Save Changes</Button>     
               </div>
               <div className="col-lg-5 offset-1">
-              <Form>
                   <Form.Group className="mb-3" controlId="name">
                     <Form.Label>full name</Form.Label>
                     <Form.Control
@@ -149,7 +152,6 @@ const Profiles = (props) => {
                   </Form.Group>
                   <Button href="profiles/update" className="btn btn-primary me-3">Here, Update Your Profile Data !
                   </Button>
-                </Form>
               </div>
               <div className="col-lg-2 offset-1">
                 <Card className="text-dark">
