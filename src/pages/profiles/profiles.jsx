@@ -22,7 +22,6 @@ import Link from "next/link";
 
 const Profiles = (props) => {
       halamanGameVerifikasi();
-
       const dataUser = [];
       const currentUser = useAuth();
       const [photo, setPhoto] = useState(null);
@@ -115,7 +114,6 @@ const Profiles = (props) => {
               <Button className="mt-1" type="submit" onClick={handleClick}>Save Changes</Button>     
               </div>
               <div className="col-lg-5 offset-1">
-              <Form>
                   <Form.Group className="mb-3" controlId="name">
                     <Form.Label>full name</Form.Label>
                     <Form.Control
@@ -154,7 +152,6 @@ const Profiles = (props) => {
                   </Form.Group>
                   <Button href="profiles/update" className="btn btn-primary me-3">Here, Update Your Profile Data !
                   </Button>
-                </Form>
               </div>
               <div className="col-lg-2 offset-1">
                 <Card className="text-dark">
