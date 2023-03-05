@@ -405,12 +405,12 @@ select:disabled {
   display: none;
 }
 
-button,
+/* button,
 [type=button],
 [type=reset],
 [type=submit] {
   -webkit-appearance: button;
-}
+} */
 
 button:not(:disabled),
 [type=button]:not(:disabled),
@@ -470,7 +470,7 @@ legend+* {
 
 [type=search] {
   outline-offset: -2px;
-  -webkit-appearance: textfield;
+  /* -webkit-appearance: textfield; */
 }
 
 /* rtl:raw:
@@ -2613,8 +2613,8 @@ textarea.form-control-lg {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  -webkit-print-color-adjust: exact;
-  color-adjust: exact;
+  /* -webkit-print-color-adjust: exact;
+  color-adjust: exact; */
 }
 
 .form-check-input[type=checkbox] {
@@ -12333,11 +12333,11 @@ p {
     /* background-color: transparent; */
     transition: padding-top 0.3s ease-in-out, padding-bottom 0.3s ease-in-out;
   }
-
+/* 
   #mainNav .navbar-brand {
-    /* font-size: 1.5em;
-    transition: font-size 0.3s ease-in-out; */
-  }
+    font-size: 1.5em;
+    transition: font-size 0.3s ease-in-out;
+  } */
 
   #mainNav .navbar-brand img {
     height: 2rem;

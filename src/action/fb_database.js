@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 
 import { set, ref, push, onValue, update } from "firebase/database";
 import { database } from "../config/firebase";

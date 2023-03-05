@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 window.addEventListener('DOMContentLoaded', event => {
     var navbarShrink = function () {
         const navbarCollapsible = document.body.querySelector('#mainNav');

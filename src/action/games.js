@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import { ref, push, onValue } from "firebase/database";
 import { database } from "../config/firebase";
 import { checkDataLogin } from "./autentication";
