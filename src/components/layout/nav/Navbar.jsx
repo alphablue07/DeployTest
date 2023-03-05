@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import logo from "../../../assets/images/echamp-white.png";
 import Login from "../../login/login";
@@ -45,7 +46,7 @@ const Navbar = ({ bgColor, user, transparant = false }) => {
       >
         <div className="container">
           <a className="navbar-brand" href="/">
-            <img src={logo} />
+            <img src={logo} alt="" />
           </a>
           <button
             className="navbar-toggler"
@@ -85,7 +86,7 @@ const Navbar = ({ bgColor, user, transparant = false }) => {
                   </a>
                 </li>
                 <li className="nav-item">
-                  {/* <a className="nav-link" href="#" onClick={handleLogout}> */}
+        
                   <a
                     className="nav-link"
                     href="#"

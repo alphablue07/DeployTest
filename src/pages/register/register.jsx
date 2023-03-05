@@ -55,7 +55,7 @@ class Register extends Component {
     
   };
   render() {
-    const { name, username, email, password, city, social_media } = this.state;
+    // const { name, username, email, password, city, social_media } = this.state;
     return (
       <div>
       <Navbar bgColor="#4A4A5C" />
