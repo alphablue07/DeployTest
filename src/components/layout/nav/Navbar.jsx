@@ -86,7 +86,7 @@ const Navbar = ({ bgColor, user, transparant = false }) => {
                   </a>
                 </li>
                 <li className="nav-item">
-        
+                  {/* <a className="nav-link" href="#" onClick={handleLogout}> */}
                   <a
                     className="nav-link"
                     href="#"
