@@ -1,14 +1,11 @@
-import React, { Component, useState,useEffect } from "react";
+import React, { useState,useEffect } from "react";
 import Navbar from "../../components/layout/nav/Navbar";
-import Footer from "../../components/layout/footer/Footer";
-import { MDBTypography } from 'mdb-react-ui-kit';
+// import Footer from "../../components/layout/footer/Footer";
+// import { MDBTypography } from 'mdb-react-ui-kit';
 import {
   Form,
   Container,
   Card,
-  CardGroup,
-  Row,
-  Col,
   Button
 } from "react-bootstrap";
 
@@ -18,7 +15,6 @@ import { halamanGameVerifikasi } from "../../action/games";
 import { getLeaderBoard } from "../../action/games";
 // import { useAuth,upload } from "../../config/firebase";
 import { useAuth,upload } from "../../action/fb_storage";
-import Link from "next/link";
 
 const Profiles = (props) => {
       halamanGameVerifikasi();
@@ -34,7 +30,7 @@ const Profiles = (props) => {
       }
 
       function handleClick(){
-        if(photo == null){
+        if(photo === null){
           alert(`can't upload empty data`)
         }else{
           upload(photo,currentUser)
@@ -49,7 +45,7 @@ const Profiles = (props) => {
 
 
       const [dataList, setDataList] = useState([]);
-      const [isLogin, setIsLogin] = useState(false);
+      // const [isLogin, setIsLogin] = useState(false);
       const [profile, setProfile] = useState();
       
       const setDataUser = (dataUser)=>{
@@ -57,7 +53,7 @@ const Profiles = (props) => {
         const setDataUserDetail = (dataUser) =>{
           setProfile(dataUser)
       }
-      const files = document.getElementById('profileSubmit');
+      // const files = document.getElementById('profileSubmit');
 
       // function handleChange(e){
       //   files.className = 'mt-1 disabled btn btn-primary me-3';
@@ -77,13 +73,13 @@ const Profiles = (props) => {
     }
 
     dataList.forEach((elem) => {
-      if(elem.id_player == currentUser.uid){
+      if(elem.id_player === currentUser.uid){
         const score = elem.score;
         dataUser.push(score)
       }
     })
       useEffect(() => {
-          checkDataLogin(setIsLogin,setDataUser, setDataUserDetail, setProfile)
+          checkDataLogin( setDataUser, setDataUserDetail, setProfile)
       }, []);
       
       

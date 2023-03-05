@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react"
-import { getAuth,createUserWithEmailAndPassword, signInWithEmailAndPasswor, onAuthStateChanged, signOut, updateProfile } from "firebase/auth";
-import { getDownloadURL, ref , uploadBytes, deleteObject,getMetadata,updateMetadata } from "firebase/storage"
-import { initializeApp } from "firebase/app";
+import { onAuthStateChanged, updateProfile } from "firebase/auth";
+import { getDownloadURL, ref, deleteObject } from "firebase/storage"
 import { authFirebase,storage } from "../config/firebase";
-import { Alert } from "react-bootstrap";
-import { set } from "firebase/database"
 
 // const auth = getAuth();
 
@@ -36,7 +33,7 @@ export async function deletePhoto(currentUser){
 
 export async function upload(file,currentUser){
       const fileRef = ref(storage, currentUser.uid + '.png');
-      const snapshot = await uploadBytes(fileRef,file);
+      // const snapshot = await uploadBytes(fileRef,file);
       const photoURL = await getDownloadURL(fileRef);
       updateProfile(currentUser, {photoURL});
       alert('photo profile updated!')

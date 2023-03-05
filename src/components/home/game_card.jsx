@@ -29,7 +29,7 @@ const GameCard = (props) => {
                                         (isLogin) ?
                                             <a style={{ position: "relative", bottom: 0 }} href={props.url} className="btn btn-success mx-2">PLAY GAME</a>
                                             :
-                                            <a style={{ position: "relative", bottom: 0 }} className="btn btn-secondary mx-2" disabled>LOGIN BEFORE PLAY</a>
+                                            <a style={{ position: "relative", bottom: 0 }} href="/" className="btn btn-secondary mx-2" disabled>LOGIN BEFORE PLAY</a>
 
                                         :
                                         <Button style={{ position: "relative", bottom: 0 }} className="btn btn-secondary mx-2" disabled>COMING SOON</Button>

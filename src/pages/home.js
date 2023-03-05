@@ -1,17 +1,14 @@
 import { Component } from "react";
-import { Form, Container, Card, CardGroup, Row, Col } from 'react-bootstrap';
-// import { authFirebase, database } from "../config/firebase"
+import { Form, Container, Row, Col } from 'react-bootstrap';
 
 import '../assets/pages/home/styles.css';
 import '../assets/pages/home/scripts.js';
 
-import imgHeader from '../assets/images/header-bg.jpg'
-import logo from '../assets/images/echamp-white.png'
-import btnSlide from '../assets/images/scroll_down.svg'
-import GameCard from '../components/home/game_card'
-import Slideshow from '../components/home/slideshow'
+import imgHeader from '../assets/images/header-bg.jpg';
+import GameCard from '../components/home/game_card';
+import Slideshow from '../components/home/slideshow';
 import Footer from "../components/layout/footer/Footer";
-import { getLeaderBoard, retrieveAllGames, retrieveAllSlideshow, seederGame } from "../action/games";
+import { retrieveAllGames, retrieveAllSlideshow } from "../action/games";
 import Navbar from "../components/layout/nav/Navbar";
 import Leaderboard from "../components/home/leaderboard";
 

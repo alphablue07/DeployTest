@@ -1,4 +1,7 @@
-import { Component, useState, useEffect } from "react";
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect } from "react";
 import Navbar from "../../components/layout/nav/Navbar";
 import img_hand_batu from "../../assets/images/games/rock-paper-scissors/hand_batu.png"
 import img_hand_kertas from "../../assets/images/games/rock-paper-scissors/hand_kertas.png"
@@ -6,7 +9,7 @@ import img_hand_gunting from "../../assets/images/games/rock-paper-scissors/hand
 import img_icon_refresh from "../../assets/images/games/rock-paper-scissors/icon_refresh.png"
 import "../../assets/pages/games/rock_paper_scissors/style.css"
 import { halamanGameVerifikasi, insertGameScore } from "../../action/games";
-import { checkDataLogin } from "../../action/autentication";
+// import { checkDataLogin } from "../../action/autentication";
 
 const GameRPS = () => {
     const game_id = "-NG-Fxccy-8f1RZoup6D"
@@ -61,7 +64,7 @@ const GameRPS = () => {
         card_hand(com_chose, "com");
         card_hand(you_chose, "player");
 
-        if (res != 0) {
+        if (res !== 0) {
             if (res < 2 && res > -2) {
                 if (you_chose > com_chose) {
                     who_won = 1;

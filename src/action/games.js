@@ -1,7 +1,7 @@
-import { set, ref, push, onValue, query } from "firebase/database";
+import { ref, push, onValue } from "firebase/database";
 import { database } from "../config/firebase";
 import { checkDataLogin } from "./autentication";
-import { useAuth } from "./fb_storage";
+
 
 
 const db = database;
@@ -193,7 +193,7 @@ export const getPlayerByUUID = async (id_player) => {
 
         onValue(dbRef, (snapshot) => {
             Object.keys(snapshot.val()).map((key) => {
-                if (snapshot.val()[key]["id_player"] == id_player) {
+                if (snapshot.val()[key]["id_player"] === id_player) {
                     resolve(snapshot.val()[key]);
                 }
             });
@@ -213,7 +213,7 @@ export const getLeaderBoard = async (limit = 0) => {
             let name = "< Unknown >"
             let image = "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
             const py_index = py.findIndex(function (c) {
-                return c.data.id_player == element.data.id_player
+                return c.data.id_player === element.data.id_player
             })
             if (py_index >= 0) {
                 name = py[py_index].data.name
@@ -229,7 +229,7 @@ export const getLeaderBoard = async (limit = 0) => {
             })
         } else {
             var commentIndex = players.findIndex(function (c) {
-                return c.id_player == element.data.id_player;
+                return c.id_player === element.data.id_player;
             });
             players[commentIndex]['score'] += element.data.score;
         }
@@ -247,16 +247,16 @@ export const getScore = async () => {
     const players = []
     const data_score = await retrieveAllGamesScore()
     data_score.forEach(async element => {
-        const found = players.some(el => el.id_player === element.data.id_player)
+        // const found = players.some(el => el.id_player === element.data.id_player)
             var commentIndex = players.findIndex(function (c) {
-                return c.id_player == element.data.id_player;
+                return c.id_player === element.data.id_player;
             });
             players[commentIndex]['score'] += element.data.score;
     });
 };
 
 export const halamanGameVerifikasi = async () => {
-    const isLogin = false
+    // const isLogin = false
     const cekLogin = (res)=>{
         // isLogin = res
         // console.log("Login : ",res)

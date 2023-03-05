@@ -1,4 +1,3 @@
-import { Form, Container, Card, CardGroup, Row, Col, Button } from 'react-bootstrap';
 
 import btnSlide from '../../assets/images/scroll_down.svg'
 import '../../assets/pages/home/slideshow.css';
@@ -34,7 +33,7 @@ const Slideshow = (props) => {
 
             </div>
             <a className="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                <img src={btnSlide} style={{ transform: "rotate(90deg)" }} />
+                <img src={btnSlide} style={{ transform: "rotate(90deg)" }} alt="button-style1"/>
             </a>
             <a className="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
                 <img src={btnSlide} alt="" style={{ transform: "rotate(-90deg)" }} />

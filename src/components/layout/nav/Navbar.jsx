@@ -3,10 +3,10 @@ import logo from "../../../assets/images/echamp-white.png";
 import Login from "../../login/login";
 import { useState, useEffect } from "react";
 // import { useDispatch, useSelector } from "react-redux";
-import { onAuthStateChanged } from "firebase/auth";
-import { authFirebase } from "../../../config/firebase";
+// import { onAuthStateChanged } from "firebase/auth";
+// import { authFirebase } from "../../../config/firebase";
 import { checkDataLogin, firebaseLogout } from "../../../action/autentication";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const Navbar = ({ bgColor, user, transparant = false }) => {
   const [showModal, setShowModal] = useState(false);

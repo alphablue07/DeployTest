@@ -1,7 +1,9 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/alt-text */
 import { Component } from "react";
 import { authFirebase } from "../../config/firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { checkDataLogin, firebaseLogout } from "../../action/autentication";
+// import { checkDataLogin, firebaseLogout } from "../../action/autentication";
 
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';

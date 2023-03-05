@@ -1,7 +1,7 @@
-import logo from "./logo.svg";
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import { authFirebase } from "./config/firebase";
 import "./App.css";
 
@@ -39,14 +39,14 @@ function App() {
   useEffect(() => {
     const unsubscribe = authFirebase.onAuthStateChanged(async (user) => {
       if (user) {
-        const idTokenResult = await user.getIdTokenResult();
-        console.log("user", user);
+        // const idTokenResult = await user.getIdTokenResult();
+        // console.log("user", user);
 
-        const userGame = {
-          email: user.email,
-          uid: user.uid,
-          token: idTokenResult,
-        };
+        // const userGame = {
+        //   email: user.email,
+        //   uid: user.uid,
+        //   token: idTokenResult,
+        // };
 
         // dispatch({
         //   type: "LOGGED_IN_USER",

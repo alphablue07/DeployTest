@@ -23,7 +23,7 @@ const LeaderboardCard = (props) => {
         <Card style={{ backgroundColor: '#00000050' }} className="mt-2 p-3">
             <Row >
                 <Col xs="auto">
-                    <img src={props.data.image} style={{ width: 60, borderRadius: '50%' }} />
+                    <img src={props.data.image} style={{ width: 60, borderRadius: '50%' }} alt="Leaderboard Card"/>
                 </Col>
                 <Col>
                     <div style={{ justifyContent: 'center', alignItems: 'center', textAlignVertical: 'center' }}>

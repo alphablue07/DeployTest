@@ -1,28 +1,21 @@
 /* eslint-disable no-restricted-globals */
-import React, { Component, useState, useEffect} from "react";
+import React, { useState, useEffect} from "react";
 import Navbar from "../../components/layout/nav/Navbar";
 import Footer from "../../components/layout/footer/Footer";
 import {
   Form,
   Container,
-  Card,
-  CardGroup,
-  Row,
-  Col,
   Button,
 } from "react-bootstrap";
 import { checkDataLogin } from "../../action/autentication";
 import { halamanGameVerifikasi } from "../../action/games";
-import { useAuth,upload,deletePhoto } from "../../action/fb_storage.js"
-import  Link  from "next/link";
+import { useAuth } from "../../action/fb_storage.js"
 import { updateProfile2 } from "../../action/fb_database";
 
 export default function UpdateProfile(){
       halamanGameVerifikasi();
       const currentUser = useAuth();
 
-      const [updateProfile, setUpdateProfile] = useState('');
-      const [isLogin, setIsLogin] = useState(false);
       const [profile, setProfile] = useState();
       const [name, setName] = useState('')
       const [username, setUsername] = useState('')
@@ -45,11 +38,9 @@ export default function UpdateProfile(){
         setProfile(dataUser)
       } 
       
-      const setDataUserDetail = (dataUser) =>{
-          // console.log("data user detail:", dataUser)
-      }
+
       useEffect(() => {
-          checkDataLogin(setIsLogin, setDataUserDetail, setDataUser, setProfile)
+          checkDataLogin( setDataUser, setProfile)
       }, []);      
     return (
       <div style={{ backgroundColor: "#2B2D33", color: "#fff" }}>
